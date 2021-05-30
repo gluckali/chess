@@ -1,0 +1,19 @@
+/* input, select {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+} */
+
+select, input[type="text"]{
+    width:100%;
+    box-sizing:border-box;
+}
+
+p.no-data{
+    color: red;
+    font-size: 20px;
+}
+
+table, th, td{
+    border: 1px solid black;
+}

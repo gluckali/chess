@@ -1,0 +1,5 @@
+gebleven bij nieuw-wedstrijd.php:
+    edit/delete verwijderen.
+
+Uitslagen:
+    Zorg dat de punten ingevuld kunnen worden. op basis hiervan wordt het overzicht in wedstrijd compleet gemaakt.

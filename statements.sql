@@ -1,0 +1,46 @@
+-- LET OP ON DELETE CASCADE VOOR FK'S! DIT ZORGT ERVOOR DAT JE GEEN ISSUES KRIJGT MET DELETEN VAN CHILD/PARENT
+CREATE DATABASE letszchess;
+
+USE letszchess;
+
+CREATE TABLE schaakvereniging(
+    id INT NOT NULL AUTO_INCREMENT,
+    naam VARCHAR(255),
+    telefoonnummer VARCHAR(255),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE speler(
+    id INT NOT NULL AUTO_INCREMENT,
+    voornaam VARCHAR(255) NOT NULL,
+    tussenvoegsel VARCHAR(255),
+    achternaam VARCHAR(255) NOT NULL,
+    verenigingID INT NOT NULL,
+    neemtDeel BOOLEAN,
+    PRIMARY KEY(id),
+    FOREIGN KEY(verenigingID) REFERENCES schaakvereniging(id) ON DELETE CASCADE
+);
+
+CREATE TABLE toernooi(
+    id INT NOT NULL AUTO_INCREMENT,
+    toernooi VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE wedstrijd(
+    id INT NOT NULL AUTO_INCREMENT,
+    toernooiID INT NOT NULL,
+    speler1ID INT NOT NULL,
+    speler2ID INT NOT NULL,
+    ronde SMALLINT NOT NULL,
+    punten1 INT,
+    punten2 INT,
+    
+    -- NULLABLE WANT WAARDE WORDT ER LATER INGEZET
+    winnaarID INT, 
+    PRIMARY KEY(id),
+    FOREIGN KEY(toernooiID) REFERENCES toernooi(id) ON DELETE CASCADE, 
+    FOREIGN KEY(speler1ID) REFERENCES speler(id) ON DELETE CASCADE,
+    FOREIGN KEY(speler2ID) REFERENCES speler(id) ON DELETE CASCADE,
+    FOREIGN KEY(winnaarID) REFERENCES speler(id) ON DELETE CASCADE
+);
